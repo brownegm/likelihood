@@ -728,15 +728,15 @@ hessian = TRUE, delta = 100, slimit = 2, c = 2, note = "", show_display = TRUE, 
                                       else if (identical(pdf, dweibull)) pdfname<-"dweibull"
                                         else if (identical(pdf, dwilcox)) pdfname<-"dwilcox"
                                           else pdfname<-"User-defined function"
-
-    # Find out what the user called the model
-    model_name<-""
-    base_all<-ls(.GlobalEnv)
-    for (i in 1:length(base_all)) {
-      if (identical(get(base_all[i], pos=.GlobalEnv),model)) {
-        model_name<-base_all[i]
-      }
-    }
+# MB: commenting out this functionality.. it creates a scoping problem when I try to use it within another function which creates a function in a local env.
+ #   # Find out what the user called the model
+ #  model_name<-""
+ #   base_all<-ls(.GlobalEnv)
+ #   for (i in 1:length(base_all)) {
+ #     if (identical(get(base_all[i], pos=.GlobalEnv),model)) {
+ #       model_name<-base_all[i]
+ #     }
+ #   }
 
     # Calculate the standard errors, if requested
     if (hessian) {
@@ -802,7 +802,8 @@ hessian = TRUE, delta = 100, slimit = 2, c = 2, note = "", show_display = TRUE, 
     support_interval_range = slimit,
     upper_limits = upper_limit, lower_limits = lower_limit,
     initial_temp = initial_temp, temp_red = temp_red, ns = ns, nt = nt,
-    pdf = pdfname, note = note, model=model_name, std_errs = std_errs,
+    pdf = pdfname, note = note,# model=model_name, removing it from the output here as well to avoid confusion.
+                  std_errs = std_errs,
     var_covar_mat = var_covar_mat, max_likeli = best_lh, aic_corr = aiccorr,
     aic = (-2.0*best_lh) + (2*numpars), slope = slp, R2 = R2, c = c,
     likeli_hist = data.frame(temp = lhisttemp, iter = lhistcycles, likeli = lhisthood, parhistory)))}
