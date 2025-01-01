@@ -706,7 +706,7 @@ hessian = TRUE, delta = 100, slimit = 2, c = 2, note = "", show_display = TRUE, 
     for (i in 1:length(parnames)) {
       par[[parnames[i]]] <- best_par[[parnames[i]]]
     }
-
+    print(pdf)
     # Find out what PDF was used
     if (identical(pdf, dbeta)) pdfname<-"dbeta"
       else if (identical(pdf, dbinom)) pdfname<-"dbinom"
