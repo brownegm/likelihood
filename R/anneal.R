@@ -730,7 +730,7 @@ hessian = TRUE, delta = 100, slimit = 2, c = 2, note = "", show_display = TRUE, 
                                           else pdfname<-"User-defined function"
 # MB: commenting out this functionality.. it creates a scoping problem when I try to use it within another function which creates a function in a local env.
  #   # Find out what the user called the model
- #  model_name<-""
+  model_name <- deparse(substitute(model))
  #   base_all<-ls(.GlobalEnv)
  #   for (i in 1:length(base_all)) {
  #     if (identical(get(base_all[i], pos=.GlobalEnv),model)) {
